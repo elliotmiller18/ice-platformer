@@ -10,6 +10,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip jumpClip;
     [SerializeField] private SpriteRenderer wallStraddleSprite;
 
+    //START OF AI CODE
+    [Header("Ground Check Settings")]
+    [SerializeField] private Transform groundCheck; // An empty object at the player's feet
+    [SerializeField] private float groundCheckRadius = 0.2f; // The size of the detection circle
+    [SerializeField] private LayerMask groundLayer; // Which layers are considered 'ground'
+    //END OF AI CODE
+
     private bool airborne;
     private Rigidbody2D rb;
     private Vector2 spawnPos;
@@ -22,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null && instance == this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
@@ -52,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateGroundedStatus();
+        
         //gross? yes. fixes the weird rotation bug? yes.
         transform.rotation = Quaternion.identity;
         if (Input.GetAxisRaw("Vertical") > 0f && !airborne && jumpTimer > jumpCooldown)
@@ -74,14 +83,6 @@ public class PlayerMovement : MonoBehaviour
         old.x = horiz * movementSpeed;
         rb.linearVelocity = old;
         jumpTimer += Time.deltaTime;
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // if it's a blackbox return, we'll never land on one
-        if (collision.gameObject.CompareTag("BlackBox")) return;
-        // if we're around a tile above what we're colliding with it's probably a downward collision
-        if (Math.Abs(collision.transform.position.y - (transform.position.y - TILE_SIZE)) < 0.05f) { airborne = false; }
     }
 
     public bool GetGrounded()
@@ -109,11 +110,11 @@ public class PlayerMovement : MonoBehaviour
         {
             while (Vector2.Distance(startingPos, rb.position) < 0.05f)
             {
-                //AI CODE STARTS HERE
+                //START OF AI CODE
                 float colorValue = (Mathf.Sin(Time.time * 5f) + 1) / 2f;
                 wallStraddleSprite.color = new Color(colorValue, colorValue, colorValue);
                 yield return null;
-                //AI CODE ENDS HERE
+                //END OF AI CODE
             }
         }
         finally
@@ -125,4 +126,16 @@ public class PlayerMovement : MonoBehaviour
             wallAnim = null;
         }
     }
+    //START OF AI CODE
+    void UpdateGroundedStatus()
+    {
+        // Physics2D.OverlapCircle returns true if any collider on the specified layer
+        // is within the circle defined by the position and radius.
+        bool isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // The player is airborne if they are NOT grounded.
+        airborne = !isGrounded;
+    }
+    //END OF AI CODE
 }
+

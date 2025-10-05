@@ -82,6 +82,7 @@ public class GenerateLevel : MonoBehaviour
                         if (currentCompositeParent == null)
                         {
                             currentCompositeParent = new GameObject($"Composite Row {y} - Block");
+                            currentCompositeParent.layer = LayerMask.NameToLayer("Ground");
                             currentCompositeParent.transform.SetParent(transform);
                             var rb = currentCompositeParent.AddComponent<Rigidbody2D>();
                             rb.bodyType = RigidbodyType2D.Static;
