@@ -41,6 +41,14 @@ public class LevelManager : MonoBehaviour
         levelToGenerate = (levelToGenerate + 1) % levels.Count;
     }
 
+    public void GenerateLastLevel()
+    {
+        levelToGenerate -= 2;
+        //TODO: add secret levels here
+        if (levelToGenerate < 0) levelToGenerate = 0;
+        GenerateNextLevel();
+    }
+
     void Reset()
     {
         levelToGenerate = 0;

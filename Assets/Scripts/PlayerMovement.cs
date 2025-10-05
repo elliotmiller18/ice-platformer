@@ -92,13 +92,11 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator WallStraddleAnimation(bool left)
     {
-        Debug.Log("starting");
         Vector2 startingPos = rb.position;
         yield return new WaitForSeconds(0.4f);
 
         if (Vector2.Distance(startingPos, rb.position) >= 0.05f)
         {
-            Debug.Log("breaking");
             wallAnim = null;
             yield break;
         }
@@ -119,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
         }
         finally
         {
-            Debug.Log("ending");
             wallStraddleSprite.enabled = false;
             wallStraddleSprite.flipX = false;
             wallStraddleSprite.color = Color.white;
