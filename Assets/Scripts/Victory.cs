@@ -9,6 +9,7 @@ public class Victory : MonoBehaviour
     [SerializeField] private float cycleTime = 0.2f;
     private int currentSpriteIdx = 0;
     private SpriteRenderer sr;
+    private bool triggered = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,9 +29,18 @@ public class Victory : MonoBehaviour
         }
     }
 
+    // janky but works
+    IEnumerator AllowGeneration()
+    {
+        yield return new WaitForSeconds(2);
+        triggered = false;
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player")) return;
+        if (triggered || !collision.CompareTag("Player")) return;
+        triggered = true;
+        StartCoroutine(AllowGeneration());
         LevelManager.instance.GenerateNextLevel();
     }
 }

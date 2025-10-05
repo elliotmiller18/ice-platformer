@@ -8,12 +8,16 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
-    private int currentLevel = 0;
+    private int levelToGenerate = 0;
 
     void Awake()
     {
-        if (instance != null && instance != this) Destroy(gameObject);
-        instance = this;    
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
     }
     
     void Start()
@@ -33,14 +37,13 @@ public class LevelManager : MonoBehaviour
             GenerateLevel.instance.Generate(debugLevel);
             return;
         }
-        GenerateLevel.instance.Generate(levels[currentLevel]);
-        currentLevel = (currentLevel + 1) % levels.Count;
-        Health.instance.HardKill();
+        GenerateLevel.instance.Generate(levels[levelToGenerate]);
+        levelToGenerate = (levelToGenerate + 1) % levels.Count;
     }
 
     void Reset()
     {
-        currentLevel = 0;
+        levelToGenerate = 0;
         GenerateNextLevel();
     }
 }

@@ -8,29 +8,34 @@ public class Health : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null && instance != this) Destroy(gameObject);
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         instance = this;
-    }
-
-    void Start()
-    {
         originalPos = transform.position;
     }
 
     public void SoftKill()
     {
         if (Invincibility.instance.GetState() == InvState.Invincible) return;
+        AudioSource.PlayClipAtPoint(dieClip, Camera.main.transform.position, 0.4f);
         Kill();
     }
 
-    public void HardKill() {
+    public void HardKill(bool silent = false) {
+        if (!silent)
+        {
+            AudioSource.PlayClipAtPoint(dieClip, Camera.main.transform.position, 0.4f);
+        }
         Kill();
     }
 
     void Kill()
     {
-        AudioSource.PlayClipAtPoint(dieClip, Camera.main.transform.position, 0.4f);
-        gameObject.transform.position = originalPos;
+        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        PlayerMovement.instance.Respawn();
         Invincibility.instance.Reset();
     }
 }
