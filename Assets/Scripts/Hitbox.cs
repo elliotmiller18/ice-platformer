@@ -1,5 +1,6 @@
-using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Hitbox : MonoBehaviour
 {
@@ -7,20 +8,22 @@ public class Hitbox : MonoBehaviour
     private Sprite originalSprite;
     private SpriteRenderer sr;
     private bool invincible;
+    private bool deathIncrementLock;
 
     void Start()
     {
         invincible = false;
         sr = GetComponent<SpriteRenderer>();
-        Assert.NotNull(sr);
+        Assert.IsNotNull(sr);
         originalSprite = sr.sprite;
     }
- 
+
     void OnTriggerStay2D(Collider2D other)
     {
         Health health = other.GetComponent<Health>();
         if (health == null || invincible) return;
         health.SoftKill();
+        TextManager.instance.IncrementDeaths(); 
     }
 
     void Update()

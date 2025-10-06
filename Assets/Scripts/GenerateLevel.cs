@@ -113,7 +113,7 @@ public class GenerateLevel : MonoBehaviour
                 }
             }
         }
-        Assert.IsTrue(spawned);
+        Assert.IsTrue(spawned, "Player should be spawned during level generation");
     }
 
     private bool HasNonTriggerBoxCollider2D(GameObject prefab)

@@ -10,6 +10,7 @@ public class Victory : MonoBehaviour
     private int currentSpriteIdx = 0;
     private SpriteRenderer sr;
     private bool triggered = false;
+    public static bool victoryIsWin = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -41,6 +42,11 @@ public class Victory : MonoBehaviour
         if (triggered || !collision.CompareTag("Player")) return;
         triggered = true;
         StartCoroutine(AllowGeneration());
-        LevelManager.instance.GenerateNextLevel();
+        if (victoryIsWin)
+        {
+            victoryIsWin = false;
+            TextManager.instance.IncrementWins();
+        }
+        LevelManager.instance.GenerateNextLevel(true);
     }
 }

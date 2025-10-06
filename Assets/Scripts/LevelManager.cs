@@ -27,10 +27,10 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) Reset();
+        // if (Input.GetKeyDown(KeyCode.R)) Reset();
     }
 
-    public void GenerateNextLevel()
+    public void GenerateNextLevel(bool credit = false)
     {
         if (debugLevel != null)
         {
@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
         }
         GenerateLevel.instance.Generate(levels[levelToGenerate]);
         levelToGenerate = (levelToGenerate + 1) % levels.Count;
+        if (levelToGenerate == 0) Victory.victoryIsWin = true;
     }
 
     public void GenerateLastLevel()
