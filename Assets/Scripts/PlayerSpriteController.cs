@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerSpriteController : MonoBehaviour
 {
@@ -10,9 +10,9 @@ public class PlayerSpriteController : MonoBehaviour
 
     void Start() {
         sr = GetComponent<SpriteRenderer>();
-        Assert.NotNull(sr);
+        Assert.IsNotNull(sr);
         originalSprite = sr.sprite;
-        Assert.NotNull(originalSprite);
+        Assert.IsNotNull(originalSprite);
     }
 
     void Update()

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -8,7 +7,6 @@ public class Hitbox : MonoBehaviour
     private Sprite originalSprite;
     private SpriteRenderer sr;
     private bool invincible;
-    private bool deathIncrementLock;
 
     void Start()
     {
