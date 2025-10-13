@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
-    private int levelToGenerate = 0;
+    private int levelToGenerate = 3;
 
     void Awake()
     {
@@ -25,11 +25,6 @@ public class LevelManager : MonoBehaviour
         GenerateNextLevel();
     }
 
-    void Update()
-    {
-        // if (Input.GetKeyDown(KeyCode.R)) Reset();
-    }
-
     public void GenerateNextLevel(bool credit = false)
     {
         if (debugLevel != null)
@@ -39,20 +34,18 @@ public class LevelManager : MonoBehaviour
         }
         GenerateLevel.instance.Generate(levels[levelToGenerate]);
         levelToGenerate = (levelToGenerate + 1) % levels.Count;
-        if (levelToGenerate == 0) Victory.victoryIsWin = true;
+        if (levelToGenerate == 1 && credit) TextManager.instance.IncrementWins();
+
+        if (levelToGenerate == 4 && credit) CoolmodeController.instance.ActivateCoolMode();
+        else CoolmodeController.instance.DeactivateCoolMode();
     }
 
     public void GenerateLastLevel()
     {
-        levelToGenerate -= 2;
+        if (levelToGenerate == 0) levelToGenerate = levels.Count - 2;
+        else if (levelToGenerate == 1) levelToGenerate = levels.Count - 1;
+        else levelToGenerate -= 2;
         //TODO: add secret levels here
-        if (levelToGenerate < 0) levelToGenerate = 0;
-        GenerateNextLevel();
-    }
-
-    void Reset()
-    {
-        levelToGenerate = 0;
         GenerateNextLevel();
     }
 }

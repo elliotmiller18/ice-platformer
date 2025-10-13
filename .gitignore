@@ -6,3 +6,6 @@ Temp
 Logs
 Library
 *.csproj
+macBuild.app
+Deliverable
+Deliverable.zip

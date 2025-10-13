@@ -27,6 +27,7 @@ public class Hitbox : MonoBehaviour
     void Update()
     {
         invincible = Invincibility.instance.GetState() == InvState.Invincible;
+        if (disabledSprite != null)
         sr.sprite = invincible ? disabledSprite : originalSprite;
     }
 }

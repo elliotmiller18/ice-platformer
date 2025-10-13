@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4479568246207305169}
   - component: {fileID: -7408962839902591406}
   - component: {fileID: -4886320827467776975}
+  - component: {fileID: -4967355095253030996}
   m_Layer: 0
   m_Name: victory
   m_TagString: Untagged
@@ -152,4 +153,23 @@ MonoBehaviour:
   - {fileID: -1720410447, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
   - {fileID: 693318991, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
   - {fileID: 1254032165, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
+--- !u!114 &-4967355095253030996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590194791421591835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da7fa43cf74f4dcab5a083877fedafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 279891059, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
+  - {fileID: -1720410447, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
+  - {fileID: 693318991, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
+  - {fileID: 1254032165, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
+  - {fileID: 870190092, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
+  - {fileID: 1892777486, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
   cycleTime: 0.2

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    private Vector2 originalPos;
     [SerializeField] private AudioClip dieClip;
+    [SerializeField] private float volume = 0.08f;
     public static Health instance;
-
+    
     void Awake()
     {
         if (instance != null && instance != this)
@@ -14,20 +14,19 @@ public class Health : MonoBehaviour
             return;
         }
         instance = this;
-        originalPos = transform.position;
     }
 
     public void SoftKill()
     {
         if (Invincibility.instance.GetState() == InvState.Invincible) return;
-        AudioSource.PlayClipAtPoint(dieClip, Camera.main.transform.position, 0.4f);
+        AudioSource.PlayClipAtPoint(dieClip, Camera.main.transform.position, volume);
         Kill();
     }
 
     public void HardKill(bool silent = false) {
         if (!silent)
         {
-            AudioSource.PlayClipAtPoint(dieClip, Camera.main.transform.position, 0.4f);
+            AudioSource.PlayClipAtPoint(dieClip, Camera.main.transform.position, volume);
         }
         Kill();
     }

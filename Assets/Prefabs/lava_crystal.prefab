@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6013627995100284166}
   - component: {fileID: 4057819146843262342}
   - component: {fileID: 3298400500776918724}
+  - component: {fileID: 805902703327854881}
   - component: {fileID: 7232973041812914388}
   m_Layer: 0
   m_Name: lava_crystal
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1945161545, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
+  m_Sprite: {fileID: -2441108548998853963, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +102,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1190de9fceae74c0180407d2a3808ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledSprite: {fileID: 1716073318, guid: 7a9abe0d736da4dd486cdd572fad3ba5, type: 3}
+  disabledSprite: {fileID: 0}
+--- !u!114 &805902703327854881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4096418424977906237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15256000854644b27bd071c7a3bdbba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rdots:
+  - {fileID: -2441108548998853963, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
+  - {fileID: 1105464046, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
+  - {fileID: -1246781248, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
+  - {fileID: -851572636, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
+  - {fileID: 1897484704, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
+  bdots:
+  - {fileID: 1795746842, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
+  - {fileID: 397921178, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
+  - {fileID: -1372397647, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
+  - {fileID: -1554755986, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
+  - {fileID: 1733727466, guid: d461c7e87e0934cfa82fdf13e454ebd7, type: 3}
 --- !u!61 &7232973041812914388
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,5 +171,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 0.07, y: 0.07}
   m_EdgeRadius: 0

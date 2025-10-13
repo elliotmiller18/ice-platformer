@@ -8,6 +8,6 @@ public class UILevelSelect : MonoBehaviour
     }
     public void OnNextLevelClick()
     {
-        LevelManager.instance.GenerateNextLevel();
+        LevelManager.instance.GenerateNextLevel(true);
     }
 }

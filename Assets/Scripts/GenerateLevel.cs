@@ -78,8 +78,11 @@ public class GenerateLevel : MonoBehaviour
 
                     if (HasNonTriggerBoxCollider2D(prefabToSpawn))
                     {
+
+                        string prefabTag = prefabToSpawn.tag;
+
                         // If this is the first tile in a new contiguous block, create the composite parent.
-                        if (currentCompositeParent == null)
+                        if (currentCompositeParent == null || currentCompositeParent.tag != prefabTag)
                         {
                             currentCompositeParent = new GameObject($"Composite Row {y} - Block");
                             currentCompositeParent.layer = LayerMask.NameToLayer("Ground");
@@ -87,6 +90,7 @@ public class GenerateLevel : MonoBehaviour
                             var rb = currentCompositeParent.AddComponent<Rigidbody2D>();
                             rb.bodyType = RigidbodyType2D.Static;
                             currentCompositeParent.AddComponent<CompositeCollider2D>();
+                            currentCompositeParent.tag = prefabTag;
                         }
 
                         // Instantiate the tile as a child of the composite parent.
@@ -95,7 +99,7 @@ public class GenerateLevel : MonoBehaviour
 
                         foreach (var bc in tile.GetComponentsInChildren<BoxCollider2D>())
                         {
-                            if(!bc.isTrigger) bc.compositeOperation = Collider2D.CompositeOperation.Merge;
+                            if (!bc.isTrigger) bc.compositeOperation = Collider2D.CompositeOperation.Merge;
                         }
                     }
                     else
